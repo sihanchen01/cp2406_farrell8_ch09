@@ -1,11 +1,9 @@
-public class Movie
-{
-   private String name;
-   private int year;
-   Movie(String s, int y)
-   {
-      name = s;
-      year = y;
+public class Movie {
+   private final String name;
+   private final int year;
+   Movie(String name, int year) {
+      this.name = name;
+      this.year = year;
    }
    public String getName()
    { 

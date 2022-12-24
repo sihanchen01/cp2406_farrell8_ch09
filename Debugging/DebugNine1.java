@@ -10,11 +10,11 @@ class DebugNine1
       books[1][0] = "Lolita";
       books[1][1] = "Vladimir Nabokov";
       books[2][0] = "Huckleberry Finn";
-      books[0][1] = "Mark Twain";
+      books[2][1] = "Mark Twain";
       books[3][0] = "Great Gatsby";
-      books[3][2] = "F. Scott Fitzgerald";
+      books[3][1] = "F. Scott Fitzgerald";
       books[4][0] = "1984";
-      books[3][1] = "George Orwell;
+      books[4][1] = "George Orwell";
       books[5][0] = "Sound and the Fury";
       books[5][1] = "William Faulkner";
 
@@ -22,21 +22,24 @@ class DebugNine1
          shortEntry,
          message ="Enter the first three characters of a book title omitting \"A\" or \"The\" ";
       int num, x;
-      boolean isFound = true;
-      while(!isFound)
-      {
+      boolean isFound = false;
+
+      while(!isFound) {
          entry = JOptionPane.showInputDialog(null, message);
-         shortEntry = entry.substring(3);
-         for(x = 0; x < books.length; ++x)
-            if(books[x][0].startsWith(entry))
-            {
-             isFound = true;
-             JOptionPane.showMessageDialog(null,
-                books[x][0] + " was written by " + books[x][2]);
-             x = books.length;
+         // Capitalize the first character (e.g. gre -> Gre)
+         shortEntry = entry.substring(0, 1).toUpperCase() + entry.substring(1,3);
+
+         for (x = 0; x < books.length; ++x) {
+            if (books[x][0].startsWith(shortEntry)) {
+               isFound = true;
+               JOptionPane.showMessageDialog(null,
+                       books[x][0] + " was written by " + books[x][1]);
+               break;
             }
-         if(isFound)
+         }
+         if(!isFound) {
             JOptionPane.showMessageDialog(null, "Sorry - no such book in our database");
+         }
       }
    }
 }
